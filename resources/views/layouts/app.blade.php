@@ -21,25 +21,33 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    @auth
+
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('student.index') }}">Student</a>
                     </li>
-
+                    @endauth
                 </ul>
 
-                <div class="d-flex">
-                    <a href="{{ route('register') }}" class="btn btn-success mx-3" type="submit">Register</a>
-                    <a href="{{ route('login') }}" class="btn btn-info" type="submit">login</a>
-                </div>
+                @guest
+                    <div class="d-flex">
+                        <a href="{{ route('register') }}" class="btn btn-success mx-3" type="submit">Register</a>
+                        <a href="{{ route('login') }}" class="btn btn-info" type="submit">login</a>
+                    </div>
+                @endguest
+
+                @auth
+
 
                 <form action="{{ route('logout') }}" class="d-flex" method="post">
                     @csrf
                     <button class="btn btn-success" type="submit">logout</button>
                 </form>
-
+                @endauth
             </div>
         </div>
     </nav>
